@@ -29,7 +29,8 @@ patient_dict = {'name': 'Ramesh', 'gender': 'male', 'age': 54, 'address': addres
 patient1 = Patient(**patient_dict)
 
 temp = patient1.model_dump(exclude_unset=True)
-#temp = patient1.model_dump(include=['name', 'gender'])            # Only the name and gender field will be appearing 
+#temp = patient1.model_dump(include=['name', 'gender'])             # Only the name and gender field will be appearing 
+#temp = patient1.model_dump(exclude=['name', 'gender'])             # All fields will come except these 2 fields
 #temp = patient1.model_dump_json(exclude_unset=True)
 
 print(temp)
