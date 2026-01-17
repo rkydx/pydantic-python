@@ -21,7 +21,7 @@ def get_patient_data(patient: Patient):
     print("Patient's record has been fetched")
 
 patient_info = {'name': 'Ramesh',
-                'email': 'ramesh@gmail.com',            # email will be validated by using emailstr
+                'email': 'ramesh@gmail.com',            # email will be validated by using emailstr (must install email-validator for it to work)
                 'age': '40',                            # It will automatically converted to integer by pydantic
                 'weight': 76.3,
                 'contact_details': {
