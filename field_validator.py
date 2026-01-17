@@ -30,6 +30,13 @@ class Patient(BaseModel):
     def transform_name(cls, value):
         return value.upper()
 
+    @field_validator('age', mode='after')                    # default mode is 'after', another mode is 'before' 
+    @classmethod                                             # This can be easily done using field function but here is just an example to use field validator
+    def validate_age(cls, value):
+        if 0 < value < 100:
+            return value
+        else:
+            raise ValueError('Age should be in between 21 and 100')
     
 def update_patient_data(patient: Patient):
     print(patient.name)
