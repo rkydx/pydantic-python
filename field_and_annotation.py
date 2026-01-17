@@ -25,7 +25,7 @@ def get_patient_data(patient: Patient):
 
 patient_info = {'name': 'Ramesh',
                 'email': 'ramesh@gmail.com',                    # email will be validated by using emailstr (must install email-validator for it to work)
-                'linkedinUrl': 'http://linkedin.com/abcd342d',  # Email validator
+                'linkedinUrl': 'http://linkedin.com/abcd342d',  # URL validator
                 'age': '40',                                    # It will automatically converted to integer by pydantic
                 'weight': 76.3,
                 'contact_details': {
