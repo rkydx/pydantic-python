@@ -1,0 +1,54 @@
+# pip install pydantic
+# pip install email-validator
+# Model validator helps to validate multiple fields at a time
+
+from pydantic import BaseModel, EmailStr, Field, AnyUrl, model_validator, computed_field
+from typing import List, Dict
+
+class Patient(BaseModel):
+    name: str
+    email: EmailStr
+    age: int
+    weight: float       # In kg
+    height: float       # In meters
+    married: bool
+    allergies: List[str]
+    contact_details: Dict[str, str]
+
+    @model_validator(mode='after')                  # This is the default mode, another mode is 'before'
+    def validate_emergency_contact(self):
+        if self.age > 60 and 'emergency' not in self.contact_details:
+            raise ValueError('Patient older than 60 must have an emergency contact')
+        return self
+    
+    @computed_field
+    @property
+    def bmi(self) -> float:
+        bmi = round(self.weight/(self.height**2),2)
+        return bmi
+    
+def update_patient_data(patient: Patient):
+    print(patient.name)
+    print(patient.age)
+    print(patient.allergies)
+    print(patient.married)
+    print('BMI', patient.bmi)
+    print('Updated the record')
+
+patient_info = {
+    'name': 'John',
+    'email': 'john@boa.com', 
+    'age': '48',
+    'weight': 78.2,
+    'height': 1.75,
+    'married': True,
+    'allergies': ['dust', 'sun'],
+    'contact_details': {
+        'phone': '34595095',
+        'emergency': '56456678'
+    }
+}    
+
+patient1 = Patient(**patient_info)
+
+update_patient_data(patient1)
