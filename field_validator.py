@@ -14,7 +14,7 @@ class Patient(BaseModel):
     allergies: List[str]
     contact_details: Dict[str, str]
 
-    @field_validator('email')
+    @field_validator('email')                               # For validating email address's domain name
     @classmethod
     def email_validator(cls, value):
         valid_domains = ['boa.com', 'fox.com']
@@ -24,6 +24,12 @@ class Patient(BaseModel):
             raise ValueError('Not a valid domain')
         
         return value
+    
+    @field_validator('name')                                 # It will help to capitalize the name field's value
+    @classmethod
+    def transform_name(cls, value):
+        return value.upper()
+
     
 def update_patient_data(patient: Patient):
     print(patient.name)
