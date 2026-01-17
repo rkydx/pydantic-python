@@ -10,7 +10,7 @@ class Patient(BaseModel):
     age: int = Field(gt=0, lt=80)
     weight: float = Field(gt=0)
     married: bool = False
-    allergies: Optional[List[str]] = Field(max_length=5)
+    allergies: Optional[List[str]] = Field(default=None, max_length=5)
     contact_details: Dict[str, str]
 
 def get_patient_data(patient: Patient):
