@@ -8,8 +8,8 @@ class Patient(BaseModel):
     name: Annotated[str, Field(max_length=50, title='Name of the Patient', description='Provide the name of the patient in less than 50 chars', examples=['Ramesh', 'Sam'])]
     email: EmailStr
     age: int = Field(gt=0, lt=80)
-    weight: float = Field(gt=0)
-    married: bool = False
+    weight: Annotated[float, Field(gt=0, strict=True)]
+    married: Annotated[bool, Field(default=None, description='is the patient married or not')]
     allergies: Optional[List[str]] = Field(default=None, max_length=5)
     contact_details: Dict[str, str]
 
