@@ -15,7 +15,9 @@ class Patient(BaseModel):
     contact_details: Dict[str, str]
 
 def get_patient_data(patient: Patient):
-    print(patient.name)    
+    print(patient.name)   
+    print(patient.email)
+    print(patient.linkedinUrl) 
     print(patient.age)
     print(patient.allergies)
     print(patient.married)
