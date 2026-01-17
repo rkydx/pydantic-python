@@ -13,7 +13,7 @@ class Patient(BaseModel):
     name: str
     gender: str
     age: int
-    address: Address
+    address: Address                # This is the nested model 
 
 address_dict = {'city': 'woodland', 'area': 'west', 'pin': '435643'}
 
